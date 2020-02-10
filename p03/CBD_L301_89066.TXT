@@ -1,0 +1,92 @@
+quit
+CREATE KEYSPACE "myFirstSpace"
+CREATE KEYSPACE "myFirstSpace" WITH replication = {'class': 'Strategy name'}
+CREATE KEYSPACE "myFirstSpace" WITH replication = {'class': 'Strategy name'};
+CREATE KEYSPACE "myFirstSpace" WITH replication = {'class': 'Strategy name'}       CREATE KEYSPACE "myFirstSpace" WITH replication = {'class': 'Strategy name'};
+CREATE KEYSPACE "myFirstSpace" WITH replica
+CREATE KEYSPACE tutorialspoint
+WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 3};
+CREATE KEYSPACE tutorialspoint WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 3};
+DESCRIBE 
+DESCRIBE KEYSPACE
+DESCRIBE KEYSPACEs
+ SELECT * FROM system.schema_keyspaces;
+ SELECT * FROM system.tutorialspoint;
+ SELECT * FROM tutorialspoint;
+USE tutorialspoint ;
+ SELECT * FROM tutorialspoint;
+CREATE TABLE emp(
+   emp_id int PRIMARY KEY,
+   emp_name text,
+   emp_city text,
+   emp_sal varint,
+   emp_phone varint
+   );
+CREATE TABLE emp(    emp_id int PRIMARY KEY,    emp_name text,    emp_city text,    emp_sal varint,    emp_phone varint    );
+ SELECT * FROM tutorialspoint;
+ SELECT * FROM tutorialspoint.emp;
+ SELECT * FROM emp;
+INSERT INTO emp (emp_id, emp_name, emp_city,
+   emp_phone, emp_sal) VALUES(1,'ram', 'Hyderabad', 9848022338, 50000);
+INSERT INTO emp (emp_id, emp_name, emp_city,    emp_phone, emp_sal) VALUES(1,'ram', 'Hyderabad', 9848022338, 50000);
+ SELECT * FROM emp;
+UPDATE emp SET emp_city = "Adeus" WHERE emp_id = 1
+;
+UPDATE emp SET emp_city = "Adeus" WHERE emp_id = 1 ;
+ SELECT * FROM emp;
+UPDATE emp SET emp_city = "Adeus" WHERE emp_id = 1;
+UPDATE emp SET emp_city = 'Adeus' WHERE emp_id = 1;
+ SELECT * FROM emp;
+SELECT from emp 
+;
+SELECT from emp  ;
+SELECT * FROM emp  
+;
+SELECT * FROM emp   ;
+SELECT emp_city FROM emp  ;
+INSERT INTO emp (emp_id, emp_name, emp_city,
+ emp_phone, emp_sal) VALUES(2,'joao', 'Hyderabad',3243243, 66000)
+;
+INSERT INTO emp (emp_id, emp_name, emp_city,  emp_phone, emp_sal) VALUES(2,'joao', 'Hyderabad',3243243, 66000) ;
+SELECT * FROM emp   ;
+SELECT * FROM emp  WHERE emp_name = 'Joao' ;
+SELECT * FROM emp  WHERE emp_name = Joao ;
+SELECT * FROM emp  WHERE emp_id = 2 ;
+SELECT * FROM emp ;
+CREATE list
+;
+CREATE list ;
+CREATE lista list<text> ;
+tutorialspoint> CREATE TABLE data(name text PRIMARY KEY, email list<text>);
+ CREATE TABLE data(name text PRIMARY KEY, email list<text>);
+INSERT INTO data(name, email) VALUES ('ramu',
+['abc@gmail.com','cba@yahoo.com']);
+INSERT INTO data(name, email) VALUES ('ramu', ['abc@gmail.com','cba@yahoo.com']);
+ UPDATE data
+... SET email = email +['xyz@tutorialspoint.com']
+... where name = 'ramu';
+ UPDATE data ... SET email = email +['xyz@tutorialspoint.com'] ... where name = 'ramu';
+UPDATE data SET email = email +['meu@mail.com'] 
+;
+UPDATE data SET email = email +['meu@mail.com']  ;
+UPDATE data SET email = email +['meu@mail.com']  where name = 'ramu';
+select * FROM data 
+;
+select * FROM data  ;
+DESCRIBE KEYSPACEs
+history
+;
+history ;
+CREATE TYPE tutorialspoint.card_details (
+   num int,
+   pin int,
+   name text,
+   cvv int,
+   phone set<int>,
+   );
+CREATE TYPE tutorialspoint.card_details (    num int,    pin int,    name text,    cvv int,    phone set<int>,    );
+DESCRIBE card_details
+DESCRIBE card_details;
+DESCRIBE type  card_details;
+INSERT INTO emp (emp_id, emp_name, emp_city,    emp_phone, emp_sal) VALUES(3,'jose', 'Fireabad', 12345338, 87600);
+quit

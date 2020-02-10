@@ -1,0 +1,214 @@
+# Base de Dados de uma Plataforma de Jogos
+### keyspace
+```
+ CREATE KEYSPACE cbde3 WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 3};
+```
+
+## creates and inserts
+### jogosid
+```
+CREATE TABLE jogosid ( id int, name text, released timestamp, developer int, pg int, PRIMARY KEY (id));
+```
+```
+INSERT INTO jogosId (id, name, released, developer, pg) VALUES (0, 'First War', '2016-05-24 14:44', 0, 16);
+INSERT INTO jogosId (id, name, released, developer, pg) VALUES (1, 'Extreme Guardian', '2018-03-04 04:46', 1, 16);
+INSERT INTO jogosId (id, name, released, developer, pg) VALUES (2, 'I Extreme', '2016-07-23 08:44', 2, 2);
+INSERT INTO jogosId (id, name, released, developer, pg) VALUES (3, 'Ultra Plus', '2016-08-11 21:57', 3, 18);
+INSERT INTO jogosId (id, name, released, developer, pg) VALUES (4, 'Last Fight', '2015-11-19 23:46', 4, 2);
+INSERT INTO jogosId (id, name, released, developer, pg) VALUES (5, 'Ultimate Soldier', '2017-06-30 14:29', 5, 18);
+INSERT INTO jogosId (id, name, released, developer, pg) VALUES (6, 'Earth Ultimate', '2018-06-17 09:21', 0, 12);
+INSERT INTO jogosId (id, name, released, developer, pg) VALUES (7, 'Pro Ultra', '2018-10-02 23:42', 1, 16);
+INSERT INTO jogosId (id, name, released, developer, pg) VALUES (8, 'Plus Plus', '2015-11-09 14:36', 2, 16);
+INSERT INTO jogosId (id, name, released, developer, pg) VALUES (9, 'Plus Pro', '2015-03-13 14:18', 3, 12);
+INSERT INTO jogosId (id, name, released, developer, pg) VALUES (10, 'Night Ultimate', '2018-05-04 14:34', 4, 18);
+INSERT INTO jogosId (id, name, released, developer, pg) VALUES (11, 'Ultra Fight', '2017-07-30 06:09', 5, 18);
+INSERT INTO jogosId (id, name, released, developer, pg) VALUES (12, 'First Last', '2016-01-31 18:15', 0, 12);
+INSERT INTO jogosId (id, name, released, developer, pg) VALUES (13, 'Plus Extreme', '2016-10-11 19:42', 1, 16);
+INSERT INTO jogosId (id, name, released, developer, pg) VALUES (14, 'Earth Ultra', '2018-01-06 01:33', 2, 16);
+INSERT INTO jogosId (id, name, released, developer, pg) VALUES (15, 'Fight I', '2015-06-18 06:57', 3, 16);
+INSERT INTO jogosId (id, name, released, developer, pg) VALUES (16, 'War I', '2015-02-13 01:07', 4, 12);
+INSERT INTO jogosId (id, name, released, developer, pg) VALUES (17, 'Earth Ultra', '2016-09-05 04:00', 5, 2);
+INSERT INTO jogosId (id, name, released, developer, pg) VALUES (18, 'Night Fight', '2015-11-02 16:31', 0, 16);
+INSERT INTO jogosId (id, name, released, developer, pg) VALUES (19, 'Pro II', '2018-02-28 16:32', 1, 2);
+
+```
+
+
+### jogosname
+```
+CREATE TABLE jogosname ( id int, name text, released timestamp, developer int, pg int, PRIMARY KEY (name));
+```
+```
+INSERT INTO jogosName (id, name, released, developer, pg) VALUES (0, 'First War', '2016-05-24 14:44', 0, 16);
+INSERT INTO jogosName (id, name, released, developer, pg) VALUES (1, 'Extreme Guardian', '2018-03-04 04:46', 1, 16);
+INSERT INTO jogosName (id, name, released, developer, pg) VALUES (2, 'I Extreme', '2016-07-23 08:44', 2, 2);
+INSERT INTO jogosName (id, name, released, developer, pg) VALUES (3, 'Ultra Plus', '2016-08-11 21:57', 3, 18);
+INSERT INTO jogosName (id, name, released, developer, pg) VALUES (4, 'Last Fight', '2015-11-19 23:46', 4, 2);
+INSERT INTO jogosName (id, name, released, developer, pg) VALUES (5, 'Ultimate Soldier', '2017-06-30 14:29', 5, 18);
+INSERT INTO jogosName (id, name, released, developer, pg) VALUES (6, 'Earth Ultimate', '2018-06-17 09:21', 0, 12);
+INSERT INTO jogosName (id, name, released, developer, pg) VALUES (7, 'Pro Ultra', '2018-10-02 23:42', 1, 16);
+INSERT INTO jogosName (id, name, released, developer, pg) VALUES (8, 'Plus Plus', '2015-11-09 14:36', 2, 16);
+INSERT INTO jogosName (id, name, released, developer, pg) VALUES (9, 'Plus Pro', '2015-03-13 14:18', 3, 12);
+INSERT INTO jogosName (id, name, released, developer, pg) VALUES (10, 'Night Ultimate', '2018-05-04 14:34', 4, 18);
+INSERT INTO jogosName (id, name, released, developer, pg) VALUES (11, 'Ultra Fight', '2017-07-30 06:09', 5, 18);
+INSERT INTO jogosName (id, name, released, developer, pg) VALUES (12, 'First Last', '2016-01-31 18:15', 0, 12);
+INSERT INTO jogosName (id, name, released, developer, pg) VALUES (13, 'Plus Extreme', '2016-10-11 19:42', 1, 16);
+INSERT INTO jogosName (id, name, released, developer, pg) VALUES (14, 'Earth Ultra', '2018-01-06 01:33', 2, 16);
+INSERT INTO jogosName (id, name, released, developer, pg) VALUES (15, 'Fight I', '2015-06-18 06:57', 3, 16);
+INSERT INTO jogosName (id, name, released, developer, pg) VALUES (16, 'War I', '2015-02-13 01:07', 4, 12);
+INSERT INTO jogosName (id, name, released, developer, pg) VALUES (17, 'Earth Ultra', '2016-09-05 04:00', 5, 2);
+INSERT INTO jogosName (id, name, released, developer, pg) VALUES (18, 'Night Fight', '2015-11-02 16:31', 0, 16);
+```
+
+### developerId
+```
+create TABLE developerId( id int, name text, foundation timestamp, gamesowned set<int>, locations list<text>, PRIMARY KEY (id));
+```
+```
+INSERT INTO developerId (id, name, foundation, gamesowned, locations) VALUES (0, 'Pokemon', '2015-09-28 02:51', {0, 6, 12, 18}, ['Angola']);
+INSERT INTO developerId (id, name, foundation, gamesowned, locations) VALUES (1, 'Sony', '2016-02-29 21:03', {1, 7, 13, 19}, ['Angola', 'Super', 'Viseu']);
+INSERT INTO developerId (id, name, foundation, gamesowned, locations) VALUES (2, 'Nintendo', '2015-03-02 21:41', {2, 8, 14}, ['Faro', 'Angola', 'Viseu']);
+INSERT INTO developerId (id, name, foundation, gamesowned, locations) VALUES (3, 'Valve', '2017-11-17 07:15', {3, 9, 15}, ['Faro', 'Sagres']);
+INSERT INTO developerId (id, name, foundation, gamesowned, locations) VALUES (4, 'Naughty Dog', '2015-04-29 08:20', {4, 10, 16}, ['Aveiro', 'Coimbra']);
+INSERT INTO developerId (id, name, foundation, gamesowned, locations) VALUES (5, 'Intel', '2017-11-11 04:48', {5, 11, 17}, ['America', 'Aveiro', 'Angola']);
+```
+
+### users
+```
+create TABLE users( username text, name text, games set<int>, email text, gameinfo map<text, int>, Primary key(username));
+```
+```
+INSERT INTO users (username, name, games, email, gameinfo) VALUES ('Leonor29', 'Leonor', {1, 17}, 'leonor29@hotmail.com', {'most_played': 1, 'least_played': 1, 'favorite': 17});
+INSERT INTO users (username, name, games, email, gameinfo) VALUES ('Maria47', 'Maria', {9, 4, 0, 8}, 'maria47@outlook.pt', {'most_played': 9, 'least_played': 8, 'favorite': 9});
+INSERT INTO users (username, name, games, email, gameinfo) VALUES ('Rafael51', 'Rafael', {16, 14, 0}, 'rafael51@ua.pt', {'most_played': 14, 'least_played': 14, 'favorite': 0});
+INSERT INTO users (username, name, games, email, gameinfo) VALUES ('Miguel29', 'Miguel', {1}, 'miguel29@ua.pt', {'most_played': 1, 'least_played': 1, 'favorite': 1});
+INSERT INTO users (username, name, games, email, gameinfo) VALUES ('Margarida38', 'Margarida', {3}, 'margarida38@hotmail.com', {'most_played': 3, 'least_played': 3, 'favorite': 3});
+INSERT INTO users (username, name, games, email, gameinfo) VALUES ('Lara68', 'Lara', {15, 16, 10, 12}, 'lara68@outlook.pt', {'most_played': 12, 'least_played': 15, 'favorite': 10});
+INSERT INTO users (username, name, games, email, gameinfo) VALUES ('Marta3', 'Marta', {2, 18, 17}, 'marta3@hotmail.com', {'most_played': 2, 'least_played': 18, 'favorite': 17});
+INSERT INTO users (username, name, games, email, gameinfo) VALUES ('Mafalda73', 'Mafalda', {8}, 'mafalda73@hotmail.com', {'most_played': 8, 'least_played': 8, 'favorite': 8});
+INSERT INTO users (username, name, games, email, gameinfo) VALUES ('Inês40', 'Inês', {13}, 'inês40@hotmail.com', {'most_played': 13, 'least_played': 13, 'favorite': 13});
+INSERT INTO users (username, name, games, email, gameinfo) VALUES ('Vera46', 'Vera', {16, 10}, 'vera46@hotmail.com', {'most_played': 16, 'least_played': 16, 'favorite': 16});
+INSERT INTO users (username, name, games, email, gameinfo) VALUES ('Francisca25', 'Francisca', {6}, 'francisca25@outlook.pt', {'most_played': 6, 'least_played': 6, 'favorite': 6});
+INSERT INTO users (username, name, games, email, gameinfo) VALUES ('Luís33', 'Luís', {18, 0, 3}, 'luís33@ua.pt', {'most_played': 0, 'least_played': 0, 'favorite': 3});
+INSERT INTO users (username, name, games, email, gameinfo) VALUES ('José73', 'José', {0, 17, 10, 3}, 'josé73@outlook.pt', {'most_played': 10, 'least_played': 0, 'favorite': 17});
+INSERT INTO users (username, name, games, email, gameinfo) VALUES ('Rafaela49', 'Rafaela', {18}, 'rafaela49@ua.pt', {'most_played': 18, 'least_played': 18, 'favorite': 18});
+INSERT INTO users (username, name, games, email, gameinfo) VALUES ('Santiago70', 'Santiago', {0, 5}, 'santiago70@ua.pt', {'most_played': 0, 'least_played': 0, 'favorite': 0});
+```
+
+### pgTable
+```
+create TABLE pgTable( pg int PRIMARY KEY , games set<int>);
+```
+```
+INSERT INTO pgTable (pg, games) VALUES (16, {0, 1, 7, 8, 13, 14, 15, 18});
+INSERT INTO pgTable (pg, games) VALUES (2, {2, 4, 17, 19});
+INSERT INTO pgTable (pg, games) VALUES (18, {3, 5, 10, 11});
+INSERT INTO pgTable (pg, games) VALUES (12, {6, 9, 12, 16});
+```
+
+### secundary indexes
+Note: [when to use](https://stackoverflow.com/a/17522756), ou seja, colunas com valores repetidos
+#### 1st
+```
+CREATE INDEX if NOT EXISTS pg_sindex on jogosid (pg) ;
+```
+which allows:
+```
+select * from jogosid where pg = 12;
+```
+
+#### 2nd
+```
+CREATE INDEX if NOT EXISTS locations_sindex ON developerid (locations) ;
+```
+which allows:
+```
+select * from developerid where locations CONTAINS  'Faro' ;
+```
+
+### updates
+##### nota: data integrity não é tida em conta nestas queries;
+```
+UPDATE jogosid SET released = dateof(now()) WHERE id = 5;
+```
+```
+UPDATE jogosid SET released = dateof(now()) WHERE id = 10 IF pg = 18;
+```
+> Nota: throws "NoHostAvailable:", suponho que seja devido ao tipo de tipologia escolhida
+```
+UPDATE developerid set locations += ['Madeira'] where id = 5;
+UPDATE developerid set locations[1]='Portugal'  where id = 5;
+update developerid SET gamesowned += {1} where id = 5;
+update developerid SET gamesowned = {5,11,17} where id = 5;
+```
+> Nota: Aparentemente nao dá para usar secundary index para UDPATES:
+```
+UPDATE developerid set locations += ['Russia'] where locations contains 'Super';
+UPDATE jogosid SET released = dateof(now()) where pg = 12 and id = 9;
+update users set gameinfo += {'favorite':0} where username = 'Rafael51';
+```
+### deletes
+##### nota: data integrity não é tida em conta nestas queries;
+```
+UPDATE developerid set locations -= ['Madeira'] where id = 5;
+DELETE gamesowned from developerid where id = 5;
+DELETE from jogosid where id = 1;
+update users set gameinfo -= {'favorite', 'least_played'} where username = 'Rafael51';
+DELETE games[0] from users WHERE username = 'Rafael51';
+```
+
+### queries
+#### 1. Todos os jogos que sejam PG12
+```
+select * from jogosid where pg = 12;
+```
+
+#### 2. Desenvolvedoras com localização em Faro
+```
+select * from developerid where locations CONTAINS  'Faro' ;
+```
+
+#### 3. Numero de jogos registados na Base de Dados
+```
+select count(*) from jogosname;
+```
+
+#### 4. Três das Desenvolvedoras com localização em Angola
+```
+select * from cbde3.developerid WHERE locations CONTAINS 'Angola' LIMIT 3;
+```
+
+#### 5. Numero de jogos que são PG18
+```
+select count(*) FROM jogosid WHERE pg = 18;
+```
+
+#### 6. Utilizadores e jogos que têm o jogo 17 como favorito
+```
+CREATE INDEX if NOT EXISTS users_map_sindex on users (entries(gameinfo));
+&
+select username, games from users WHERE gameinfo['favorite'] = 17;
+```
+
+#### 7. Verificar se existe algum jogo com pg = 10
+```
+select count(*) from pgtable WHERE pg = 10;
+```
+
+#### 8. Resultados da tabela de desenvolvedores, com o nome das colunas em português
+```
+select id, foundation as data_fundacao, gamesowned as jogos_desenvolvidos, locations as localizacoes, name as nome from cbde3.developerid ;
+```
+
+#### 9. Videojogos que tenham um dos seguintes nomes ('Fight I', 'War I', 'Pro II')
+```
+select * from jogosname where name in ('Fight I', 'War I', 'Pro II');
+```
+
+#### 10. Informaçáo de jogos com o nome 'Earth Ultra' ordenada por ordem decrescente de id
+```
+CREATE TABLE jogosname ( id int, name text, released timestamp, developer int, pg int, PRIMARY KEY (name, id ));
+&
+select * FROM jogosname WHERE name = 'Earth Ultra' ORDER BY id DESC  ;
+```
+##### Nota: Não é estritamente necessário indicar a clustering ordem na table creation, podendo apenas definir-se a clustering key, de forma a ser possível indicar a ordem (ascendente ou descendente) da mesma na query.

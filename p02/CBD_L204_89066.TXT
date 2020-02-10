@@ -1,0 +1,1 @@
+Resolução encontra-se no projeto Maven na pasta de nome "p02-e2_4"

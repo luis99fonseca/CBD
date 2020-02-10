@@ -1,0 +1,505 @@
+#### Nota: geralmente a pesquisa é feita com Primary Key, logo para estes exercicios, as tabelas devem ser criadas tendo em conta a query às quais são aplicadas (grande diferença em relação a SQL);
+
+
+#TODO: por 1 select exemplicador em cada ex.
+#TODO: por enunciado
+
+# a)
+## 1. Gestão de utilizadores: entre outros, registar o username, nome, email, selo temporal de registo na plataforma;
+### create
+```
+CREATE TABLE users( usernamer text PRIMARY KEY,  nome text,  email text,  hora_registo timestamp, );
+```
+
+### inserts
+```
+INSERT INTO users (usernamer, nome, email, hora_registo) VALUES ('Inês70', 'Inês', 'inês70@ua.pt', '2017-08-10 21:10');
+INSERT INTO users (usernamer, nome, email, hora_registo) VALUES ('Lara49', 'Lara', 'lara49@outlook.pt', '2015-04-02 10:13');
+INSERT INTO users (usernamer, nome, email, hora_registo) VALUES ('Ana76', 'Ana', 'ana76@ua.pt', '2018-10-07 00:48');
+INSERT INTO users (usernamer, nome, email, hora_registo) VALUES ('Carla39', 'Carla', 'carla39@hotmail.com', '2018-10-03 03:48');
+INSERT INTO users (usernamer, nome, email, hora_registo) VALUES ('Mafalda26', 'Mafalda', 'mafalda26@ua.pt', '2016-10-19 01:12');
+INSERT INTO users (usernamer, nome, email, hora_registo) VALUES ('Margarida95', 'Margarida', 'margarida95@hotmail.com', '2017-11-21 12:19');
+INSERT INTO users (usernamer, nome, email, hora_registo) VALUES ('José70', 'José', 'josé70@outlook.pt', '2016-10-10 14:18');
+INSERT INTO users (usernamer, nome, email, hora_registo) VALUES ('Rafael22', 'Rafael', 'rafael22@hotmail.com', '2018-08-26 15:25');
+INSERT INTO users (usernamer, nome, email, hora_registo) VALUES ('Soraia51', 'Soraia', 'soraia51@outlook.pt', '2018-12-14 21:51');
+INSERT INTO users (usernamer, nome, email, hora_registo) VALUES ('Francisca75', 'Francisca', 'francisca75@outlook.pt', '2018-11-22 20:26');
+INSERT INTO users (usernamer, nome, email, hora_registo) VALUES ('João20', 'João', 'joão20@outlook.pt', '2015-08-21 21:13');
+```
+## 2. Gestão de vídeos: entre outros, registar o autor da partilha, nome do vídeo, descrição, uma ou mais etiquetas (tag) e selo temporal de upload/partilha;
+### create 
+#### by video id
+##### Note: Feito tendo em atenção o pedido na d)6.
+```
+CREATE TABLE videoId ( id int, nome text, descricao text, tags list<text>, time_upload timestamp, autor text, Primary key (id, time_upload)) WITH CLUSTERING ORDER BY (time_upload DESC );
+```
+
+### inserts 
+#### by video id
+```
+INSERT INTO videoId (id, nome, descricao, tags, time_upload, autor) VALUES (0, 'Lorem0', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', ['gamer', 'gameplay', 'lifestyle'], '2018-10-03 03:48', 'Carla39');
+INSERT INTO videoId (id, nome, descricao, tags, time_upload, autor) VALUES (1, 'industry.1', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', ['reaction', 'gameplay', 'lifestyle', 'lifestyle'], '2018-08-26 15:25', 'Rafael22');
+INSERT INTO videoId (id, nome, descricao, tags, time_upload, autor) VALUES (2, 'Ipsum2', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', ['comedy', 'reaction'], '2018-12-14 21:51', 'Soraia51');
+INSERT INTO videoId (id, nome, descricao, tags, time_upload, autor) VALUES (3, 'dummy3', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', ['cooking', 'cooking'], '2015-08-21 21:13', 'João20');
+INSERT INTO videoId (id, nome, descricao, tags, time_upload, autor) VALUES (4, 'the4', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', ['lifestyle', 'gamer', 'comedy', 'gamer'], '2015-08-21 21:13', 'João20');
+INSERT INTO videoId (id, nome, descricao, tags, time_upload, autor) VALUES (5, 'of5', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', ['aveiro', 'lifestyle', 'gameplay', 'gameplay'], '2016-10-19 01:12', 'Mafalda26');
+INSERT INTO videoId (id, nome, descricao, tags, time_upload, autor) VALUES (6, 'is6', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', ['top10', 'gameplay', 'gameplay', 'cooking'], '2018-11-22 20:26', 'Francisca75');
+INSERT INTO videoId (id, nome, descricao, tags, time_upload, autor) VALUES (7, 'industry.7', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', ['comedy', 'music', 'gameplay'], '2016-10-10 14:18', 'José70');
+INSERT INTO videoId (id, nome, descricao, tags, time_upload, autor) VALUES (8, 'dummy8', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', ['reaction'], '2015-04-02 10:13', 'Lara49');
+INSERT INTO videoId (id, nome, descricao, tags, time_upload, autor) VALUES (9, 'typesetting9', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', ['comedy', 'comedy', 'lifestyle', 'gamer'], '2015-04-02 10:13', 'Lara49');
+INSERT INTO videoId (id, nome, descricao, tags, time_upload, autor) VALUES (10, 'text10', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', ['lifestyle', 'gameplay', 'aveiro', 'top10'], '2016-10-19 01:12', 'Mafalda26');
+INSERT INTO videoId (id, nome, descricao, tags, time_upload, autor) VALUES (11, 'of11', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', ['lifestyle'], '2018-08-26 15:25', 'Rafael22');
+INSERT INTO videoId (id, nome, descricao, tags, time_upload, autor) VALUES (12, 'typesetting12', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', ['comedy', 'gameplay'], '2017-11-21 12:19', 'Margarida95');
+INSERT INTO videoId (id, nome, descricao, tags, time_upload, autor) VALUES (13, 'printing13', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', ['comedy'], '2018-12-14 21:51', 'Soraia51');
+INSERT INTO videoId (id, nome, descricao, tags, time_upload, autor) VALUES (14, 'is14', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', ['reaction', 'gamer', 'cooking', 'gamer'], '2015-08-21 21:13', 'João20');
+INSERT INTO videoId (id, nome, descricao, tags, time_upload, autor) VALUES (15, 'of15', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', ['top10', 'reaction', 'cooking', 'comedy'], '2017-11-21 12:19', 'Margarida95');
+INSERT INTO videoId (id, nome, descricao, tags, time_upload, autor) VALUES (16, 'of16', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', ['comedy', 'reaction', 'aveiro', 'reaction'], '2017-11-21 12:19', 'Margarida95');
+INSERT INTO videoId (id, nome, descricao, tags, time_upload, autor) VALUES (17, 'dummy17', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', ['cooking', 'lifestyle', 'gamer', 'gameplay'], '2017-08-10 21:10', 'Inês70');
+INSERT INTO videoId (id, nome, descricao, tags, time_upload, autor) VALUES (18, 'industry.18', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', ['aveiro', 'gamer'], '2017-11-21 12:19', 'Margarida95');
+INSERT INTO videoId (id, nome, descricao, tags, time_upload, autor) VALUES (19, 'and19', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', ['reaction', 'music', 'cooking', 'aveiro'], '2017-08-10 21:10', 'Inês70');
+INSERT INTO videoId (id, nome, descricao, tags, time_upload, autor) VALUES (20, 'the20', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', ['reaction', 'gameplay', 'top10', 'lifestyle'], '2015-08-21 21:13', 'João20');
+INSERT INTO videoId (id, nome, descricao, tags, time_upload, autor) VALUES (21, 'of21', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', ['gameplay', 'gamer', 'aveiro', 'gamer'], '2018-12-14 21:51', 'Soraia51');
+INSERT INTO videoId (id, nome, descricao, tags, time_upload, autor) VALUES (22, 'Lorem22', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', ['lifestyle', 'aveiro'], '2018-10-03 03:48', 'Carla39');
+INSERT INTO videoId (id, nome, descricao, tags, time_upload, autor) VALUES (23, 'Ipsum23', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', ['reaction', 'reaction'], '2017-11-21 12:19', 'Margarida95');
+INSERT INTO videoId (id, nome, descricao, tags, time_upload, autor) VALUES (24, 'typesetting24', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', ['gamer', 'gamer'], '2016-10-10 14:18', 'José70');
+INSERT INTO videoId (id, nome, descricao, tags, time_upload, autor) VALUES (25, 'printing25', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', ['music', 'top10', 'aveiro', 'top10'], '2015-08-21 21:13', 'João20');
+```
+
+## 3. Gestão de comentários: realizados para um vídeo em determinado momento temporal e tem como autor um utilizador;
+ 
+### create 
+#### by video_id, timestamp 
+##### https://stackoverflow.com/a/35322564
+```
+create TABLE video_vid_time( video_id int, video_name text, timeComment timestamp, authorComment text, content text, primary KEY (video_id, timeComment));
+
+ALTER TABLE videoid ADD coments list<text>;
+```
+##### Nota: devido a um lapso não sao adicionados coments a "videoid".
+
+#### by author, timestamp
+```
+CREATE TABLE video_author_time( video_id int, video_name text, authorcomment text, timeComment timestamp, content text, primary KEY (authorcomment, timeComment));
+```
+### inserts
+```
+UPDATE  videoid SET  coments =  ['muito bom', 'melhor fa sou eu']  WHERE id = 1 and time_upload = '2019-11-28';
+```
+#### by video_id, timestamp
+```
+INSERT INTO video_vid_time ('vid_id', 'video_name', 'timeComment', 'authorComment', 'content') VALUES (10, 'text10', '2017-11-06 05:00', 'Margarida95', 'bom bom');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (10, 'text10', '2018-04-18 02:30', 'Inês70', 'muito mau');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (10, 'text10', '2017-04-04 08:18', 'Soraia51', 'adoro dislike');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (10, 'text10', '2018-09-19 03:52', 'João20', 'dislike bom');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (2, 'Ipsum2', '2018-12-27 11:15', 'Lara49', 'like muito');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (2, 'Ipsum2', '2018-12-29 02:21', 'Carla39', 'like adoro');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (2, 'Ipsum2', '2018-12-27 06:08', 'Francisca75', 'bom like');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (6, 'is6', '2018-12-15 10:07', 'Mafalda26', 'muito bom');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (25, 'printing25', '2017-10-06 03:54', 'Rafael22', 'fixe odeio');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (5, 'of5', '2017-05-27 09:26', 'João20', 'adoro muito');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (5, 'of5', '2016-12-10 18:28', 'João20', 'dislike dislike');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (5, 'of5', '2017-08-18 20:18', 'João20', 'dislike mau');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (5, 'of5', '2017-04-12 21:12', 'Soraia51', 'nice odeio');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (18, 'industry.18', '2018-02-28 17:48', 'Margarida95', 'nice mau');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (18, 'industry.18', '2017-12-08 13:21', 'João20', 'dislike bom');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (17, 'dummy17', '2017-11-09 16:45', 'Margarida95', 'mau muito');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (16, 'of16', '2018-04-07 17:24', 'João20', 'adoro like');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (21, 'of21', '2018-12-17 13:21', 'Rafael22', 'bom nice');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (21, 'of21', '2018-12-29 07:23', 'Inês70', 'odeio like');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (8, 'dummy8', '2016-10-27 04:22', 'Margarida95', 'adoro like');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (12, 'typesetting12', '2018-07-02 01:40', 'João20', 'bom bom');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (12, 'typesetting12', '2018-07-17 14:47', 'João20', 'fa like');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (12, 'typesetting12', '2018-01-26 03:31', 'Margarida95', 'bom dislike');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (22, 'Lorem22', '2018-12-10 20:45', 'Rafael22', 'dislike fixe');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (22, 'Lorem22', '2018-11-09 07:38', 'João20', 'like dislike');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (22, 'Lorem22', '2018-12-01 16:49', 'Inês70', 'like fixe');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (22, 'Lorem22', '2018-10-26 01:50', 'Soraia51', 'like like');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (11, 'of11', '2018-11-23 23:16', 'Mafalda26', 'fa odeio');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (11, 'of11', '2018-09-08 04:14', 'Mafalda26', 'adoro bom');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (24, 'typesetting24', '2017-01-23 17:51', 'João20', 'adoro dislike');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (4, 'the4', '2018-05-22 08:58', 'Margarida95', 'fixe like');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (4, 'the4', '2016-11-18 17:24', 'Soraia51', 'adoro muito');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (4, 'the4', '2016-11-02 11:15', 'João20', 'odeio mau');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (7, 'industry.7', '2017-10-15 01:35', 'Inês70', 'odeio muito');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (7, 'industry.7', '2016-10-23 17:07', 'João20', 'like fa');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (7, 'industry.7', '2018-04-22 18:55', 'Soraia51', 'muito mau');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (3, 'dummy3', '2017-11-09 08:58', 'Soraia51', 'fa fixe');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (15, 'of15', '2018-02-07 05:30', 'Inês70', 'adoro bom');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (1, 'industry.1', '2018-09-07 09:48', 'Inês70', 'adoro dislike');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (13, 'printing13', '2018-12-19 17:49', 'João20', 'nice fa');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (13, 'printing13', '2018-12-30 18:30', 'Lara49', 'odeio odeio');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (13, 'printing13', '2018-12-21 03:02', 'Lara49', 'dislike bom');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (13, 'printing13', '2018-12-28 18:05', 'Inês70', 'dislike nice');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (9, 'typesetting9', '2015-11-11 10:50', 'Margarida95', 'fixe dislike');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (0, 'Lorem0', '2018-12-03 20:26', 'José70', 'mau like');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (0, 'Lorem0', '2018-10-05 16:42', 'Soraia51', 'adoro bom');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (0, 'Lorem0', '2018-11-16 09:52', 'Soraia51', 'mau nice');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (20, 'the20', '2018-10-21 06:19', 'Rafael22', 'muito muito');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (20, 'the20', '2016-02-08 16:12', 'João20', 'bom fixe');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (20, 'the20', '2017-09-19 04:05', 'Rafael22', 'adoro nice');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (20, 'the20', '2016-10-14 20:54', 'João20', 'adoro nice');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (19, 'and19', '2018-08-13 06:05', 'José70', 'odeio adoro');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (19, 'and19', '2017-12-25 01:49', 'Francisca75', 'dislike nice');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (19, 'and19', '2018-05-26 21:06', 'Rafael22', 'fa fixe');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (23, 'Ipsum23', '2018-05-02 00:03', 'Soraia51', 'like dislike');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (23, 'Ipsum23', '2017-12-07 10:55', 'Francisca75', 'dislike like');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (23, 'Ipsum23', '2017-12-11 12:10', 'Margarida95', 'fixe muito');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (23, 'Ipsum23', '2018-07-02 02:18', 'Carla39', 'like muito');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (14, 'is14', '2017-09-06 18:31', 'Lara49', 'adoro like');
+INSERT INTO video_vid_time (video_id, video_name, timeComment, authorComment, content) VALUES (14, 'is14', '2016-02-04 16:37', 'Rafael22', 'adoro a');
+```
+#### by author, timestamp 
+```
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (10, 'text10', '2017-11-06 05:00', 'Margarida95', 'bom bom');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (10, 'text10', '2018-04-18 02:30', 'Inês70', 'muito mau');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (10, 'text10', '2017-04-04 08:18', 'Soraia51', 'adoro dislike');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (10, 'text10', '2018-09-19 03:52', 'João20', 'dislike bom');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (2, 'Ipsum2', '2018-12-27 11:15', 'Lara49', 'like muito');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (2, 'Ipsum2', '2018-12-29 02:21', 'Carla39', 'like adoro');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (2, 'Ipsum2', '2018-12-27 06:08', 'Francisca75', 'bom like');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (6, 'is6', '2018-12-15 10:07', 'Mafalda26', 'muito bom');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (25, 'printing25', '2017-10-06 03:54', 'Rafael22', 'fixe odeio');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (5, 'of5', '2017-05-27 09:26', 'João20', 'adoro muito');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (5, 'of5', '2016-12-10 18:28', 'João20', 'dislike dislike');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (5, 'of5', '2017-08-18 20:18', 'João20', 'dislike mau');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (5, 'of5', '2017-04-12 21:12', 'Soraia51', 'nice odeio');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (18, 'industry.18', '2018-02-28 17:48', 'Margarida95', 'nice mau');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (18, 'industry.18', '2017-12-08 13:21', 'João20', 'dislike bom');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (17, 'dummy17', '2017-11-09 16:45', 'Margarida95', 'mau muito');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (16, 'of16', '2018-04-07 17:24', 'João20', 'adoro like');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (21, 'of21', '2018-12-17 13:21', 'Rafael22', 'bom nice');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (21, 'of21', '2018-12-29 07:23', 'Inês70', 'odeio like');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (8, 'dummy8', '2016-10-27 04:22', 'Margarida95', 'adoro like');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (12, 'typesetting12', '2018-07-02 01:40', 'João20', 'bom bom');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (12, 'typesetting12', '2018-07-17 14:47', 'João20', 'fa like');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (12, 'typesetting12', '2018-01-26 03:31', 'Margarida95', 'bom dislike');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (22, 'Lorem22', '2018-12-10 20:45', 'Rafael22', 'dislike fixe');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (22, 'Lorem22', '2018-11-09 07:38', 'João20', 'like dislike');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (22, 'Lorem22', '2018-12-01 16:49', 'Inês70', 'like fixe');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (22, 'Lorem22', '2018-10-26 01:50', 'Soraia51', 'like like');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (11, 'of11', '2018-11-23 23:16', 'Mafalda26', 'fa odeio');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (11, 'of11', '2018-09-08 04:14', 'Mafalda26', 'adoro bom');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (24, 'typesetting24', '2017-01-23 17:51', 'João20', 'adoro dislike');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (4, 'the4', '2018-05-22 08:58', 'Margarida95', 'fixe like');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (4, 'the4', '2016-11-18 17:24', 'Soraia51', 'adoro muito');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (4, 'the4', '2016-11-02 11:15', 'João20', 'odeio mau');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (7, 'industry.7', '2017-10-15 01:35', 'Inês70', 'odeio muito');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (7, 'industry.7', '2016-10-23 17:07', 'João20', 'like fa');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (7, 'industry.7', '2018-04-22 18:55', 'Soraia51', 'muito mau');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (3, 'dummy3', '2017-11-09 08:58', 'Soraia51', 'fa fixe');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (15, 'of15', '2018-02-07 05:30', 'Inês70', 'adoro bom');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (1, 'industry.1', '2018-09-07 09:48', 'Inês70', 'adoro dislike');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (13, 'printing13', '2018-12-19 17:49', 'João20', 'nice fa');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (13, 'printing13', '2018-12-30 18:30', 'Lara49', 'odeio odeio');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (13, 'printing13', '2018-12-21 03:02', 'Lara49', 'dislike bom');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (13, 'printing13', '2018-12-28 18:05', 'Inês70', 'dislike nice');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (9, 'typesetting9', '2015-11-11 10:50', 'Margarida95', 'fixe dislike');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (0, 'Lorem0', '2018-12-03 20:26', 'José70', 'mau like');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (0, 'Lorem0', '2018-10-05 16:42', 'Soraia51', 'adoro bom');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (0, 'Lorem0', '2018-11-16 09:52', 'Soraia51', 'mau nice');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (20, 'the20', '2018-10-21 06:19', 'Rafael22', 'muito muito');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (20, 'the20', '2016-02-08 16:12', 'João20', 'bom fixe');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (20, 'the20', '2017-09-19 04:05', 'Rafael22', 'adoro nice');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (20, 'the20', '2016-10-14 20:54', 'João20', 'adoro nice');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (19, 'and19', '2018-08-13 06:05', 'José70', 'odeio adoro');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (19, 'and19', '2017-12-25 01:49', 'Francisca75', 'dislike nice');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (19, 'and19', '2018-05-26 21:06', 'Rafael22', 'fa fixe');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (23, 'Ipsum23', '2018-05-02 00:03', 'Soraia51', 'like dislike');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (23, 'Ipsum23', '2017-12-07 10:55', 'Francisca75', 'dislike like');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (23, 'Ipsum23', '2017-12-11 12:10', 'Margarida95', 'fixe muito');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (23, 'Ipsum23', '2018-07-02 02:18', 'Carla39', 'like muito');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (14, 'is14', '2017-09-06 18:31', 'Lara49', 'adoro like');
+INSERT INTO video_author_time (video_id, video_name, timeComment, authorComment, content) VALUES (14, 'is14', '2016-02-04 16:37', 'Rafael22', 'adoro adoro');
+```
+### Search by Autor
+#### create
+```
+ALTER TABLE users ADD coments list<text>;
+```
+#### inserts
+```
+UPDATE users SET coments = ['bom bom', 'nice mau', 'mau muito', 'adoro like', 'bom dislike', 'fixe like', 'fixe dislike', 'fixe muito'] WHERE usernamer = 'Margarida95';
+UPDATE users SET coments = ['muito mau', 'odeio like', 'like fixe', 'odeio muito', 'adoro bom', 'adoro dislike', 'dislike nice'] WHERE usernamer = 'Inês70';
+UPDATE users SET coments = ['adoro dislike', 'nice odeio', 'like like', 'adoro muito', 'muito mau', 'fa fixe', 'adoro bom', 'mau nice', 'like dislike'] WHERE usernamer = 'Soraia51';
+UPDATE users SET coments = ['dislike bom', 'adoro muito', 'dislike dislike', 'dislike mau', 'dislike bom', 'adoro like', 'bom bom', 'fa like', 'like dislike', 'adoro dislike', 'odeio mau', 'like fa', 'nice fa', 'bom fixe', 'adoro nice'] WHERE usernamer = 'João20';
+UPDATE users SET coments = ['like muito', 'odeio odeio', 'dislike bom', 'adoro like'] WHERE usernamer = 'Lara49';
+UPDATE users SET coments = ['like adoro', 'like muito'] WHERE usernamer = 'Carla39';
+UPDATE users SET coments = ['bom like', 'dislike nice', 'dislike like'] WHERE usernamer = 'Francisca75';
+UPDATE users SET coments = ['muito bom', 'fa odeio', 'adoro bom'] WHERE usernamer = 'Mafalda26';
+UPDATE users SET coments = ['fixe odeio', 'bom nice', 'dislike fixe', 'muito muito', 'adoro nice', 'fa fixe', 'adoro adoro'] WHERE usernamer = 'Rafael22';
+UPDATE users SET coments = ['dislike bom', 'adoro muito', 'dislike dislike', 'dislike mau', 'dislike bom', 'adoro like', 'bom bom', 'fa like', 'like dislike', 'adoro dislike', 'odeio mau', 'like fa', 'nice fa', 'bom fixe', 'adoro nice'] WHERE usernamer = 'João20';
+UPDATE users SET coments = ['dislike bom', 'adoro muito', 'dislike dislike', 'dislike mau', 'dislike bom', 'adoro like', 'bom bom', 'fa like', 'like dislike', 'adoro dislike', 'odeio mau', 'like fa', 'nice fa', 'bom fixe', 'adoro nice'] WHERE usernamer = 'João20';
+```
+## 4. Gestão de vídeo followers: permitir o registo de utilizadores que seguem determinado vídeo. Num sistema de informação, permitirá por exemplo notificar todos os followers de um novo comentário inserido para o vídeo; 
+
+### create
+#### Search by video
+```
+ALTER TABLE videoid ADD followers list<text>;
+```
+### insert
+```
+UPDATE videoid SET followers = ['João20', 'Rafael22'] WHERE id = 9 and time_upload = '2015-04-02 10:13';
+UPDATE videoid SET followers = ['José70', 'Carla39'] WHERE id = 5 and time_upload = '2016-10-19 01:12';
+UPDATE videoid SET followers = ['Margarida95', 'João20', 'Carla39'] WHERE id = 20 and time_upload = '2015-08-21 21:13';
+UPDATE videoid SET followers = ['Lara49'] WHERE id = 17 and time_upload = '2017-08-10 21:10';
+UPDATE videoid SET followers = ['João20', 'Margarida95', 'Inês70'] WHERE id = 11 and time_upload = '2018-08-26 15:25';
+UPDATE videoid SET followers = ['Lara49', 'Soraia51', 'Margarida95', 'Mafalda26', 'João20'] WHERE id = 2 and time_upload = '2018-12-14 21:51';
+UPDATE videoid SET followers = ['João20', 'Soraia51', 'Inês70'] WHERE id = 18 and time_upload = '2017-11-21 12:19';
+UPDATE videoid SET followers = ['Mafalda26'] WHERE id = 10 and time_upload = '2016-10-19 01:12';
+UPDATE videoid SET followers = ['José70', 'Carla39', 'Margarida95', 'Francisca75', 'Mafalda26'] WHERE id = 14 and time_upload = '2015-08-21 21:13';
+UPDATE videoid SET followers = ['Mafalda26', 'José70'] WHERE id = 8 and time_upload = '2015-04-02 10:13';
+UPDATE videoid SET followers = ['Margarida95', 'Francisca75'] WHERE id = 22 and time_upload = '2018-10-03 03:48';
+UPDATE videoid SET followers = ['Margarida95', 'Inês70', 'João20'] WHERE id = 12 and time_upload = '2017-11-21 12:19';
+UPDATE videoid SET followers = ['João20', 'Soraia51'] WHERE id = 0 and time_upload = '2018-10-03 03:48';
+UPDATE videoid SET followers = ['Mafalda26', 'José70', 'João20'] WHERE id = 13 and time_upload = '2018-12-14 21:51';
+UPDATE videoid SET followers = ['Lara49', 'Inês70', 'João20', 'José70', 'Rafael22', 'Soraia51'] WHERE id = 4 and time_upload = '2015-08-21 21:13';
+UPDATE videoid SET followers = ['Margarida95', 'Soraia51'] WHERE id = 23 and time_upload = '2017-11-21 12:19';
+```
+### create
+#### Search by user
+```
+ALTER TABLE users  ADD videosFollowing list<int>;
+```
+### insert
+```
+UPDATE users SET videosfollowing = [9, 20, 11, 18, 12, 0, 2, 13, 4] WHERE usernamer = 'João20';
+UPDATE users SET videosfollowing = [9, 4] WHERE usernamer = 'Rafael22';
+UPDATE users SET videosfollowing = [5, 14, 8, 13, 4] WHERE usernamer = 'José70';
+UPDATE users SET videosfollowing = [5, 20, 14] WHERE usernamer = 'Carla39';
+UPDATE users SET videosfollowing = [20, 11, 2, 22, 12, 14, 23] WHERE usernamer = 'Margarida95';
+UPDATE users SET videosfollowing = [17, 2, 4] WHERE usernamer = 'Lara49';
+UPDATE users SET videosfollowing = [11, 12, 18, 4] WHERE usernamer = 'Inês70';
+UPDATE users SET videosfollowing = [2, 0, 18, 4, 23] WHERE usernamer = 'Soraia51';
+UPDATE users SET videosfollowing = [2, 10, 8, 13, 14] WHERE usernamer = 'Mafalda26';
+UPDATE users SET videosfollowing = [22, 14] WHERE usernamer = 'Francisca75';
+
+```
+## 5. Registo de eventos: por vídeo e utilizador e podem ser do tipo play/pause/stop, incluindo o registo temporal do evento e o momento (temporal) em que ocorre no vídeo. Por exemplo, o utilizador XPTO fez play no vídeo YGZ às 2:35:54 do dia 2 de outubro de 2017, ao 300 segundo de tempo do vídeo;
+#### create
+```
+CREATE TYPE videoAction ( action text , interval text);
+&
+CREATE TABLE eventsVideoUser (  usernamer text, videoId int, event map<timestamp, frozen <videoaction> >, primary KEY (usernamer, videoId));
+```
+#### insert 
+
+> <https://www.datastax.com/blog/2014/02/cql-improvements-cassandra-21>
+```
+INSERT INTO eventsvideouser (usernamer, videoid, event) VALUES ('João20', 19, {'2017-12-10 07:13': { action : 'play' , interval : '110'}});
+INSERT INTO eventsvideouser (usernamer, videoid, event) VALUES ('Soraia51', 1, {'2018-10-13 01:40': { action :'play', interval : '120'}});
+INSERT INTO eventsvideouser (usernamer, videoid, event) VALUES ('José70', 2, {'2018-12-23 21:45': { action :'pause',interval : '110'}});
+INSERT INTO eventsvideouser (usernamer, videoid, event) VALUES ('José70', 18, {'2018-05-04 21:49': { action :'play', interval : '110'}});
+INSERT INTO eventsvideouser (usernamer, videoid, event) VALUES ('João20', 10, {'2018-05-29 02:18': { action :'play', interval : '110'}});
+INSERT INTO eventsvideouser (usernamer, videoid, event) VALUES ('Mafalda26', 9, {'2018-07-27 06:39': { action :'play', interval : '100'}});
+INSERT INTO eventsvideouser (usernamer, videoid, event) VALUES ('João20', 6, {'2018-11-23 20:39': { action :'play', interval : '11'}});
+INSERT INTO eventsvideouser (usernamer, videoid, event) VALUES ('José70', 5, {'2017-05-05 20:37': { action :'pause', interval : '110'}});
+INSERT INTO eventsvideouser (usernamer, videoid, event) VALUES ('Francisca75', 10, {'2018-11-09 05:58': { action :'play', interval : '100'}});
+INSERT INTO eventsvideouser (usernamer, videoid, event) VALUES ('Margarida95', 18, {'2018-08-29 23:20': { action :'stop', interval : '100'}});
+INSERT INTO eventsvideouser (usernamer, videoid, event) VALUES ('Margarida95', 3, {'2016-03-05 03:53': { action :'pause', interval : '120'}});
+
+```
+
+##### Nota: Update seria assim:
+```
+UPDATE eventsvideouser SET event += {dateof(now()) :  {action : 'stop', interval : '400' }  } where usernamer = 'Andre' and videoid= 1;
+```
+
+## 6.
+##### Nota: Esta abordagem consiste em criar mais 2 cols na tabel de video, uma com total de ratings e o sumatorio do msm, para se fazer a media (vai ao encontro da 10 também)
+#### create
+```
+ALTER TABLE videoid ADD totalRating int;
+ALTER TABLE videoid ADD nOfRatings int;
+```
+#### insert
+```
+UPDATE videoid SET nofratings = 10 WHERE id = 0 and time_upload = '2018-10-03 03:48';
+UPDATE videoid SET totalrating = 20 WHERE id = 0 and time_upload = '2018-10-03 03:48';
+UPDATE videoid SET nofratings = 10 WHERE id = 1 and time_upload = '2018-08-26 15:25';
+UPDATE videoid SET totalrating = 40 WHERE id = 1 and time_upload = '2018-08-26 15:25';
+UPDATE videoid SET nofratings = 10 WHERE id = 2 and time_upload = '2018-12-14 21:51';
+UPDATE videoid SET totalrating = 20 WHERE id = 2 and time_upload = '2018-12-14 21:51';
+UPDATE videoid SET nofratings = 10 WHERE id = 3 and time_upload = '2015-08-21 21:13';
+UPDATE videoid SET totalrating = 50 WHERE id = 3 and time_upload = '2015-08-21 21:13';
+UPDATE videoid SET nofratings = 10 WHERE id = 4 and time_upload = '2015-08-21 21:13';
+UPDATE videoid SET totalrating = 40 WHERE id = 4 and time_upload = '2015-08-21 21:13';
+UPDATE videoid SET nofratings = 10 WHERE id = 5 and time_upload = '2016-10-19 01:12';
+UPDATE videoid SET totalrating = 10 WHERE id = 5 and time_upload = '2016-10-19 01:12';
+UPDATE videoid SET nofratings = 10 WHERE id = 6 and time_upload = '2018-11-22 20:26';
+UPDATE videoid SET totalrating = 10 WHERE id = 6 and time_upload = '2018-11-22 20:26';
+UPDATE videoid SET nofratings = 10 WHERE id = 7 and time_upload = '2016-10-10 14:18';
+UPDATE videoid SET totalrating = 10 WHERE id = 7 and time_upload = '2016-10-10 14:18';
+UPDATE videoid SET nofratings = 30 WHERE id = 8 and time_upload = '2015-04-02 10:13';
+UPDATE videoid SET totalrating = 30 WHERE id = 8 and time_upload = '2015-04-02 10:13';
+UPDATE videoid SET nofratings = 10 WHERE id = 9 and time_upload = '2015-04-02 10:13';
+UPDATE videoid SET totalrating = 10 WHERE id = 9 and time_upload = '2015-04-02 10:13';
+UPDATE videoid SET nofratings = 10 WHERE id = 10 and time_upload = '2016-10-19 01:12';
+UPDATE videoid SET totalrating = 10 WHERE id = 10 and time_upload = '2016-10-19 01:12';
+UPDATE videoid SET nofratings = 10 WHERE id = 11 and time_upload = '2018-08-26 15:25';
+UPDATE videoid SET totalrating = 50 WHERE id = 11 and time_upload = '2018-08-26 15:25';
+UPDATE videoid SET nofratings = 10 WHERE id = 12 and time_upload = '2017-11-21 12:19';
+UPDATE videoid SET totalrating = 50 WHERE id = 12 and time_upload = '2017-11-21 12:19';
+UPDATE videoid SET nofratings = 10 WHERE id = 13 and time_upload = '2018-12-14 21:51';
+UPDATE videoid SET totalrating = 40 WHERE id = 13 and time_upload = '2018-12-14 21:51';
+UPDATE videoid SET nofratings = 10 WHERE id = 14 and time_upload = '2015-08-21 21:13';
+UPDATE videoid SET totalrating = 10 WHERE id = 14 and time_upload = '2015-08-21 21:13';
+UPDATE videoid SET nofratings = 10 WHERE id = 15 and time_upload = '2017-11-21 12:19';
+UPDATE videoid SET totalrating = 20 WHERE id = 15 and time_upload = '2017-11-21 12:19';
+UPDATE videoid SET nofratings = 10 WHERE id = 16 and time_upload = '2017-11-21 12:19';
+UPDATE videoid SET totalrating = 50 WHERE id = 16 and time_upload = '2017-11-21 12:19';
+UPDATE videoid SET nofratings = 10 WHERE id = 17 and time_upload = '2017-08-10 21:10';
+UPDATE videoid SET totalrating = 10 WHERE id = 17 and time_upload = '2017-08-10 21:10';
+UPDATE videoid SET nofratings = 50 WHERE id = 18 and time_upload = '2017-11-21 12:19';
+UPDATE videoid SET totalrating = 50 WHERE id = 18 and time_upload = '2017-11-21 12:19';
+UPDATE videoid SET nofratings = 50 WHERE id = 19 and time_upload = '2017-08-10 21:10';
+UPDATE videoid SET totalrating = 50 WHERE id = 19 and time_upload = '2017-08-10 21:10';
+UPDATE videoid SET nofratings = 10 WHERE id = 20 and time_upload = '2015-08-21 21:13';
+UPDATE videoid SET totalrating = 20 WHERE id = 20 and time_upload = '2015-08-21 21:13';
+UPDATE videoid SET nofratings = 10 WHERE id = 21 and time_upload = '2018-12-14 21:51';
+UPDATE videoid SET totalrating = 40 WHERE id = 21 and time_upload = '2018-12-14 21:51';
+UPDATE videoid SET nofratings = 10 WHERE id = 22 and time_upload = '2018-10-03 03:48';
+UPDATE videoid SET totalrating = 40 WHERE id = 22 and time_upload = '2018-10-03 03:48';
+UPDATE videoid SET nofratings = 10 WHERE id = 23 and time_upload = '2017-11-21 12:19';
+UPDATE videoid SET totalrating = 10 WHERE id = 23 and time_upload = '2017-11-21 12:19';
+UPDATE videoid SET nofratings = 10 WHERE id = 24 and time_upload = '2016-10-10 14:18';
+UPDATE videoid SET totalrating = 10 WHERE id = 24 and time_upload = '2016-10-10 14:18';
+UPDATE videoid SET nofratings = 10 WHERE id = 25 and time_upload = '2015-08-21 21:13';
+UPDATE videoid SET totalrating = 40 WHERE id = 25 and time_upload = '2015-08-21 21:13';
+
+```
+## 7. Permitir a pesquisa de todos os vídeos de determinado autor;
+#### create
+```
+ALTER TABLE users ADD videoOwned list<int>;
+```
+#### insert
+```
+UPDATE users SET videoowned = [0, 22] WHERE usernamer = 'Carla39';
+UPDATE users SET videoowned = [1, 11] WHERE usernamer = 'Rafael22';
+UPDATE users SET videoowned = [2, 13, 21] WHERE usernamer = 'Soraia51';
+UPDATE users SET videoowned = [3, 4, 14, 20, 25] WHERE usernamer = 'João20';
+UPDATE users SET videoowned = [5, 10] WHERE usernamer = 'Mafalda26';
+UPDATE users SET videoowned = [6] WHERE usernamer = 'Francisca75';
+UPDATE users SET videoowned = [7, 24] WHERE usernamer = 'José70';
+UPDATE users SET videoowned = [8, 9] WHERE usernamer = 'Lara49';
+UPDATE users SET videoowned = [12, 15, 16, 18, 23] WHERE usernamer = 'Margarida95';
+UPDATE users SET videoowned = [17, 19] WHERE usernamer = 'Inês70';
+
+```
+#### query
+```
+select nome,videoowned from users where usernamer = 'Mafalda26';
+```
+
+## 8. e 9 
+##### Nota: pode-se criar 1 TYPE (data-comentario) e deixar o sort at application level, mas no ambito do guião, fazer-se-á de outra maneira.
+
+## 8.
+##### see:  
+> https://stackoverflow.com/a/35708544
+#### drop 
+> (Clustering key regards the sorting of data, and this sorting is done on write, not on read. You need to re-create the table)
+```
+drop TABLE video_author_time;
+```
+#### create
+```
+CREATE TABLE video_author_time( video_id int, video_name text, authorcomment text, timeComment timestamp, content text, primary KEY (authorcomment, timeComment)) WITH CLUSTERING ORDER BY (timecomment DESC );
+```
+#### inserts
+> (see 3.)
+
+#### query
+```
+ select * from video_author_time where authorcomment = 'Soraia51';
+```
+
+## 9.
+#### drop
+```
+drop table video_vid_time;
+```
+#### create
+```
+create TABLE video_vid_time( video_id int, video_name text, timeComment timestamp, authorComment text, content text, primary KEY (video_id, timeComment)) WITH CLUSTERING ORDER BY (timecomment DESC );
+```
+#### inserts
+>(see 3.)
+
+#### query
+```
+select * from video_vid_time WHERE video_id = 7
+```
+
+## 10.
+>(see 6.)
+
+# d)
+## 1.
+> https://stackoverflow.com/a/37316854
+
+## 2.
+```
+select nome, tags  from videoid where id = 1;
+```
+
+## 3.
+#### create
+```
+CREATE TABLE tagsVideo ( tag text PRIMARY KEY, videoId set<int>);
+```
+#### insert
+```
+INSERT INTO tagsvideo (tag, videoid) VALUES ('gamer', {0, 4, 4, 9, 14, 14, 17, 18, 21, 21, 24, 24});
+INSERT INTO tagsvideo (tag, videoid) VALUES ('gameplay', {0, 1, 5, 5, 6, 6, 7, 10, 12, 17, 20, 21});
+INSERT INTO tagsvideo (tag, videoid) VALUES ('lifestyle', {0, 1, 1, 4, 5, 9, 10, 11, 17, 20, 22});
+INSERT INTO tagsvideo (tag, videoid) VALUES ('reaction', {1, 2, 8, 14, 15, 16, 16, 19, 20, 23, 23});
+INSERT INTO tagsvideo (tag, videoid) VALUES ('comedy', {2, 4, 7, 9, 9, 12, 13, 15, 16});
+INSERT INTO tagsvideo (tag, videoid) VALUES ('cooking', {3, 3, 6, 14, 15, 17, 19});
+INSERT INTO tagsvideo (tag, videoid) VALUES ('aveiro', {5, 10, 16, 18, 19, 21, 22, 25});
+INSERT INTO tagsvideo (tag, videoid) VALUES ('top10', {6, 10, 15, 20, 25, 25});
+INSERT INTO tagsvideo (tag, videoid) VALUES ('music', {7, 19, 25});
+```
+#### query
+```
+select * from tagsvideo WHERE tag = 'aveiro';
+```
+## 4.
+> see d)1.
+
+## 5.
+```
+ select * from video_author_time where authorcomment = 'Mafalda26' and timecomment >= '2018-09-08';
+```
+## 6.
+```
+select * from videoid LIMIT 6;
+```
+## 7.
+```
+select nome, followers from videoid where id = 23;
+
+```
+
+## 8.
+```
+select usernamer, coments FROM  users where usernamer = 'Lara49';
+```
+
+## 9.
+>None
+
+## 10.
+```
+select * from videoid ;
+```
+##### Nota: está ordenador por id, timeupload DESC
+
+## 11.
+```
+select tag, count(videoid) from tagsvideo ;
+```
+##### Nota: gives 
+>"Warnings :
+    >> Aggregation query used without partition key"
+>Thus, só mostra 1 linha, se se quiserem mais, tem de se aumentar o _LIMIT_

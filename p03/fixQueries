@@ -1,0 +1,12 @@
+
+INSERT INTO jogosId (id, name, released, developer, pg) VALUES (0, 'First War', '2016-05-24 14:44', 0, 16);
+INSERT INTO jogosName (id, name, released, developer, pg) VALUES (0, 'First War', '2016-05-24 14:44', 0, 16);
+
+INSERT INTO developerId (id, name, foundation, gamesowned, locations) VALUES (0, 'Pokemon', '2015-09-28 02:51', {0, 6, 12, 18}, ['Angola']);
+
+INSERT INTO users (username, name, games, email, gameinfo) VALUES ('Leonor29', 'Leonor', {1, 17}, 'leonor29@hotmail.com', {'most_played': 1, 'least_played': 1, 'favorite': 17});
+
+INSERT INTO pgTable (pg, games) VALUES (18, {3, 5, 10, 11});
+
+
+

@@ -1,0 +1,195 @@
+## Preparação
+### Iniciar Mongo
+$ sudo service mongodb start
+
+### Parar Mongo
+$ sudo service mongodb stop
+
+### Correr Mongo
+$ mongo
+
+### Ver Comandos Efetuados 
+$ cat ~/.dbshell
+
+## Execução
+
+> history
+
+##### Não funciona, tendo de se usar como alternativa o comando acima, de forma a ver o histórico de comandos
+
+### Bases de Dados no servidor e respetivo espaço ocupado
+> show dbs
+admin   0.000GB
+cbd202  0.034GB
+config  0.000GB
+local   0.000GB
+test    0.008GB
+
+### Usar na BD de nome "test", se a mesma não existir, cria uma com esse nome
+> use test
+switched to db test
+
+### Saber em que BD estamos a trabalhar
+> db
+test
+
+### Indicar as coleções existentes nesta BD
+> show collections
+phones
+system.js
+
+### Criar uma nova Coleção
+> db.createCollection("collection_test")
+{ "ok" : 1 }
+
+### Eliminar uma Coleçao
+> db.collection_test.drop()
+true
+
+### Inserir um Documento (Caso a collection não exista, esta é criada automaticamente)
+> db.collection_teste_2.insert({"name": "ola"})
+WriteResult({ "nInserted" : 1 })
+
+### Inserir vários Documentos (O Insert deve ter como argumento um array)
+> db.collection_teste_2.insert([{"name": "adeus"}, {"name": "aol"}])
+BulkWriteResult({
+	"writeErrors" : [ ],
+	"writeConcernErrors" : [ ],
+	"nInserted" : 2,
+	"nUpserted" : 0,
+	"nMatched" : 0,
+	"nModified" : 0,
+	"nRemoved" : 0,
+	"upserted" : [ ]
+})
+
+### Ver todos os Documentos 
+> db.collection_teste_2.find()
+{ "_id" : ObjectId("5e331e23748d02cdaefcf78b"), "name" : "ola" }
+{ "_id" : ObjectId("5e331edc748d02cdaefcf78e"), "name" : "aol" }
+{ "_id" : ObjectId("5e331f6c748d02cdaefcf78f"), "name" : "adeus" }
+
+### Ver todos os Documentos, de forma organizada
+> db.collection_teste_2.find().pretty()
+{ "_id" : ObjectId("5e331e23748d02cdaefcf78b"), "name" : "ola" }
+{ "_id" : ObjectId("5e331edc748d02cdaefcf78e"), "name" : "aol" }
+{ "_id" : ObjectId("5e331f6c748d02cdaefcf78f"), "name" : "adeus" }
+{
+	"_id" : ObjectId("5e331fdd748d02cdaefcf790"),
+	"name" : "adeus01",
+	"morada" : "rua01"
+}
+
+> db.collection_teste_2.insert({"name": "adeus", "morada": "rua02"})
+WriteResult({ "nInserted" : 1 })
+> db.collection_teste_2.find()
+{ "_id" : ObjectId("5e331e23748d02cdaefcf78b"), "name" : "ola" }
+{ "_id" : ObjectId("5e331edc748d02cdaefcf78e"), "name" : "aol" }
+{ "_id" : ObjectId("5e331f6c748d02cdaefcf78f"), "name" : "adeus" }
+{ "_id" : ObjectId("5e331fdd748d02cdaefcf790"), "name" : "adeus01", "morada" : "rua01" }
+{ "_id" : ObjectId("5e332116748d02cdaefcf791"), "name" : "adeus", "morada" : "rua02" }
+
+### Editar Documento
+#### Neste caso vai alterar todo o documento
+> db.collection_teste_2.update({"name":"adeus"}, {"anos": 2})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+#### Nesta caso, vai so alterar os atributos passados
+> db.collection_teste_2.update({"name":"adeus"}, {$set : {"anos": 3} })
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+#### Em ambos os casos, só altera um documento. Se quisermos que altere todos os documentos definidos, deve se usar `{multi:true}`, como por exemplo:
+> db.collection_teste_2.update({"name":"ola"}, {$set : {"anos": 4}}, {multi:true} )
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+### Remover Documentos de acordo com dado parametro 
+#### No caso, "name" = "adeus", remove todos
+> db.collection_teste_2.remove({"name": "adeus"})
+WriteResult({ "nRemoved" : 2 })
+
+#### Se só quisermos eliminar um documento, devemos fazer:
+> db.collection_teste_2.remove({"name": "adeus"},1)
+WriteResult({ "nRemoved" : 1 })
+
+### Remover Todos os Documentos
+> db.collection_teste_2.remove({})
+WriteResult({ "nRemoved" : 5 })
+
+> db.collection_teste_2.find()
+> db.collection_teste_2.insert({"name": "adeus", "morada": "rua04"})
+WriteResult({ "nInserted" : 1 })
+> db.collection_teste_2.insert({"name": "adeus", "morada": "rua05"})
+WriteResult({ "nInserted" : 1 })
+> db.collection_teste_2.insert({"name": "adeus", "morada": "rua06"})
+WriteResult({ "nInserted" : 1 })
+> db.collection_teste_2.find()
+{ "_id" : ObjectId("5e3323f79ad0bd608aafd7df"), "name" : "adeus", "morada" : "rua04" }
+{ "_id" : ObjectId("5e3323fa9ad0bd608aafd7e0"), "name" : "adeus", "morada" : "rua05" }
+{ "_id" : ObjectId("5e3323fe9ad0bd608aafd7e1"), "name" : "adeus", "morada" : "rua06" }
+
+### Projeção
+#### No caso, apenas do atributo "morada"; o "_id" aparece sempre por defeito, a não ser que se explicite o oposto, ou seja `"_id" : 0`
+> db.collection_teste_2.find({"name":"adeus"}, {"morada":1})
+{ "_id" : ObjectId("5e3323f79ad0bd608aafd7df"), "morada" : "rua04" }
+{ "_id" : ObjectId("5e3323fa9ad0bd608aafd7e0"), "morada" : "rua05" }
+{ "_id" : ObjectId("5e3323fe9ad0bd608aafd7e1"), "morada" : "rua06" }
+
+### Limitar Resultados
+> db.collection_teste_2.find({"name":"adeus"}, {"morada":1}).limit(1)
+{ "_id" : ObjectId("5e3323f79ad0bd608aafd7df"), "morada" : "rua04" }
+
+### Saltar Resultados
+> db.collection_teste_2.find({"name":"adeus"}, {"morada":1}).skip(1)
+{ "_id" : ObjectId("5e3323fa9ad0bd608aafd7e0"), "morada" : "rua05" }
+{ "_id" : ObjectId("5e3323fe9ad0bd608aafd7e1"), "morada" : "rua06" }
+
+### Ordenar Resultados
+#### No caso a morada, por ordem decrescente
+> db.collection_teste_2.find({"name":"adeus"}, {"morada":1}).sort({"morada": -1})
+{ "_id" : ObjectId("5e3323fe9ad0bd608aafd7e1"), "morada" : "rua06" }
+{ "_id" : ObjectId("5e3323fa9ad0bd608aafd7e0"), "morada" : "rua05" }
+{ "_id" : ObjectId("5e3323f79ad0bd608aafd7df"), "morada" : "rua04" }
+
+### Indexes
+#### Criação
+##### Single Field
+###### Aqui, estamos a criar um index de "morada", estando este por ordem crescente; Para ser decrescente deveria ter `-1`
+
+> db.collection_teste_2.ensureIndex({"morada":1})
+{
+	"createdCollectionAutomatically" : false,
+	"numIndexesBefore" : 1,
+	"numIndexesAfter" : 2,
+	"ok" : 1
+}
+
+##### Multi Field
+> db.collection_teste_2.ensureIndex({"name":-1, "morada":1})
+{
+	"createdCollectionAutomatically" : false,
+	"numIndexesBefore" : 2,
+	"numIndexesAfter" : 3,
+	"ok" : 1
+}
+### Arrays
+#### Pode conter vários tipos de dados
+> db.collection_teste_2.insert({"name": "adeus", "morada": "rua06", "cenas": [1, "duas", 3.3]})
+WriteResult({ "nInserted" : 1 })
+
+#### Aceder a um index
+##### Neste caso, estamos a filtrar de modo que o 2o index seja igual a "duas"
+> db.collection_teste_2.find({"morada":"rua06", "cenas.1" : "duas"})
+{ "_id" : ObjectId("5e3327169ad0bd608aafd7e2"), "name" : "adeus", "morada" : "rua06", "cenas" : [ 1, "duas", 3.3 ] }
+
+> db.collection_teste_2.find({"morada":"rua06"})
+{ "_id" : ObjectId("5e3323fe9ad0bd608aafd7e1"), "name" : "adeus", "morada" : "rua06" }
+{ "_id" : ObjectId("5e3327169ad0bd608aafd7e2"), "name" : "adeus", "morada" : "rua06", "cenas" : [ 1, "duas", 3.3 ] }
+
+### Agregaçoes
+#### Neste caso, ver o numero de ocorrencias de cada morada/rua
+> db.collection_teste_2.aggregate([{$group: {"_id" : "$morada", "total" : {$sum : 1} }} ])
+{ "_id" : "rua06", "total" : 2 }
+{ "_id" : "rua05", "total" : 1 }
+{ "_id" : "rua04", "total" : 1 }
+
+

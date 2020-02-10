@@ -1,0 +1,17 @@
+#### a)
+> load("/home/luis/Desktop/CBD/p02-melhoria/populatePhones.js")
+> populatePhones(351, 1, 5)
+
+#### b)
+> db.phones.find().count()
+200000
+
+#### c)
+> load("/home/luis/Desktop/CBD/p02-melhoria/count_prefix.js")
+> count_prefix()
+
+#### d)
+> load("/home/luis/Desktop/CBD/p02-melhoria/capicua.js")
+> capicua()
+
+

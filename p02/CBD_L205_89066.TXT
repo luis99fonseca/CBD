@@ -1,0 +1,48 @@
+1. wget https://raw.githubusercontent.com/ozlerhakan/mongodb-json-files/master/datasets/companies.json
+2. mongoimport --db cbd202 --collection companies --drop --file /home/luis/Desktop/CBD/p02-melhoria/companies.json
+
+#### queries)
+##c)
+#1. Empresas com empregados de "Sridhar" como nome
+> db.companies.find({"relationships.person.first_name" : /Sridhar/}).pretty()
+
+#2. Empresas com mais de 1000 empregados
+>db.companies.find( {"number_of_employees": {$gt: 1000 }  }, {"_id": 0, "name":1, "number_of_employees":1 }  )
+
+#3. numero de empresas da categoria "enterprise" que tem mais de 1500 funcionarios
+db.companies.find( {$and: [ {"category_code": "enterprise", "number_of_employees" : {$gt:1500  }}   ]  }  ).count()
+
+#4. empresas com exatamente 10 relationships 
+>db.companies.find( {"relationships": {$size: 10} }  )
+
+#5. empresas fundadas em 1996 com 2 competiçoes
+>db.companies.find( {"founded_year":1996 , "competitions": {$size: 2} }, {"_id":0, "name":1 , "competitions": 1}  )
+
+#6 numero de empresas com pelo menos 1 escritorio em "Pleasanton"
+>db.companies.find( {"offices.city": "Pleasanton"  } ).count()
+
+##d)
+#1. numero de empresas fundadas em cada ano por ordem decrescente
+>db.companies.aggregate( {$group: {"_id":"$founded_year", "total":{$sum:1}}},{$match: { "_id":{$ne: null }  }}  , {$sort: {"total":-1} } )
+
+#2. media de funcionarios em cada empresa
+>db.companies.aggregate( {$group : { "_id":null, "media":{ $avg :"$number_of_employees"   } } } )
+
+#3. top 5 das empresas com mais escritórios
+>db.companies.aggregate( {$project : {"name": "$name", "offices": {$size: "$offices" } }  }, {$sort:{offices:-1}}, {$limit: 5}   )
+
+#4. numero de escritorios por companhia por cidade (nao nula)
+db.companies.aggregate( {$unwind: "$offices"}, {$group: {"_id": { "names": "$name", "citys": "$offices.city"  } , "total": {$sum: 1}}  }, {$sort:{total: -1 } }, {$match: { "_id.citys": {"$ne": ""}  } }    )
+
+#5. nome e comprimento da empresa com o maior overview
+db.companies.aggregate({$match: { "overview": {"$ne": null}  } },{$project: {"_id": 0, "name":"$name", "length": {$strLenCP: "$overview"}}}, {$sort: {length:-1}}, {$limit: 1})
+
+#6 empresas ordenadas por category_code em ordem decrescente
+>db.companies.aggregate( {$group: {"_id":"$category_code", "popularidade": {$sum:1}  } }, {$match: {"_id": {$ne:null}} }, {$sort:{"popularidade": -1}}  )
+
+#7. numero de empregados em cada empresa cujo nome começa por "A"
+db.companies.aggregate( {$match: {"name": /^A/ }}, {$group: {"_id": "$name", "totalE": {$sum: "$number_of_employees"}    }  }  )
+
+#8. numero de companhias com email addres de dominio ".com" e homepage começando por "http"
+> db.companies.aggregate( {$match:{ "email_address": /.com/ , "homepage_url":/^http/ } }, {$count: "name" }    )
+

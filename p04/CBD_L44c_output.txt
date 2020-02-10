@@ -1,0 +1,105 @@
+-------------1
+Get all the games in the database
+<Node id=1 labels={'Game'} properties={'name': 'Last War', 'release': '2016-07-16 20:26', 'age': '2'}>
+<Node id=3 labels={'Game'} properties={'name': 'War I', 'release': '2018-04-21 01:43', 'age': '2'}>
+<Node id=5 labels={'Game'} properties={'name': 'Dawn Final', 'release': '2018-08-23 14:24', 'age': '8'}>
+<Node id=7 labels={'Game'} properties={'name': 'Ultra Motor', 'release': '2017-10-23 16:08', 'age': '18'}>
+<Node id=8 labels={'Game'} properties={'name': 'Last Plus', 'release': '2017-02-13 02:13', 'age': '18'}>
+<Node id=11 labels={'Game'} properties={'name': 'Soldier Soldier', 'release': '2016-03-01 10:47', 'age': '16'}>
+<Node id=13 labels={'Game'} properties={'name': 'Night Digital', 'release': '2015-02-06 00:38', 'age': '12'}>
+<Node id=15 labels={'Game'} properties={'name': 'Final Sun', 'release': '2016-09-01 08:22', 'age': '8'}>
+<Node id=18 labels={'Game'} properties={'name': 'Pro Last', 'release': '2018-09-12 15:31', 'age': '12'}>
+<Node id=19 labels={'Game'} properties={'name': 'Last Sun', 'release': '2015-06-26 12:36', 'age': '18'}>
+<Node id=20 labels={'Game'} properties={'name': 'First Night', 'release': '2017-01-28 01:18', 'age': '12'}>
+<Node id=22 labels={'Game'} properties={'name': 'War Insane', 'release': '2018-11-01 00:13', 'age': '18'}>
+<Node id=24 labels={'Game'} properties={'name': 'Digital Pro', 'release': '2017-11-14 01:24', 'age': '8'}>
+<Node id=25 labels={'Game'} properties={'name': 'Ultra II', 'release': '2015-04-25 15:13', 'age': '8'}>
+<Node id=26 labels={'Game'} properties={'name': 'I Earth', 'release': '2018-05-23 02:48', 'age': '18'}>
+<Node id=27 labels={'Game'} properties={'name': 'Digital Infamous', 'release': '2018-11-07 01:24', 'age': '12'}>
+<Node id=28 labels={'Game'} properties={'name': 'Extreme II', 'release': '2015-05-26 09:52', 'age': '2'}>
+<Node id=29 labels={'Game'} properties={'name': 'Earth First', 'release': '2016-06-23 15:31', 'age': '8'}>
+<Node id=32 labels={'Game'} properties={'name': 'II Dawn', 'release': '2016-05-13 23:47', 'age': '12'}>
+<Node id=33 labels={'Game'} properties={'name': 'First Final', 'release': '2017-01-12 21:26', 'age': '2'}>
+<Node id=34 labels={'Game'} properties={'name': 'Soldier Ultra', 'release': '2015-12-15 08:55', 'age': '18'}>
+<Node id=36 labels={'Game'} properties={'name': 'Soldier Last', 'release': '2017-10-01 22:56', 'age': '2'}>
+<Node id=37 labels={'Game'} properties={'name': 'II Fight', 'release': '2018-11-20 22:33', 'age': '8'}>
+<Node id=38 labels={'Game'} properties={'name': 'Sun Pro', 'release': '2015-06-04 09:34', 'age': '8'}>
+<Node id=40 labels={'Game'} properties={'name': 'Pro Fight', 'release': '2017-10-04 09:41', 'age': '16'}>
+<Node id=42 labels={'Game'} properties={'name': 'Dawn First', 'release': '2015-06-11 10:35', 'age': '8'}>
+<Node id=43 labels={'Game'} properties={'name': 'Ultra I', 'release': '2017-07-19 01:16', 'age': '12'}>
+<Node id=45 labels={'Game'} properties={'name': 'War Ultra', 'release': '2015-10-02 08:09', 'age': '12'}>
+<Node id=46 labels={'Game'} properties={'name': 'Infamous Digital', 'release': '2017-04-25 20:31', 'age': '12'}>
+<Node id=47 labels={'Game'} properties={'name': 'Ultimate Fight', 'release': '2017-01-02 12:17', 'age': '12'}>
+<Node id=49 labels={'Game'} properties={'name': 'Night War', 'release': '2015-03-20 19:12', 'age': '12'}>
+<Node id=50 labels={'Game'} properties={'name': 'Ultimate Dawn', 'release': '2015-12-07 13:29', 'age': '16'}>
+<Node id=51 labels={'Game'} properties={'name': 'Dawn Sun', 'release': '2017-03-05 14:45', 'age': '2'}>
+<Node id=55 labels={'Game'} properties={'name': 'Soldier Sun', 'release': '2015-09-02 05:42', 'age': '12'}>
+<Node id=58 labels={'Game'} properties={'name': 'Infamous Dawn', 'release': '2018-03-20 12:05', 'age': '2'}>
+<Node id=59 labels={'Game'} properties={'name': 'Sun War', 'release': '2015-04-11 09:37', 'age': '12'}>
+<Node id=60 labels={'Game'} properties={'name': 'Extreme Motor', 'release': '2015-06-03 07:06', 'age': '8'}>
+<Node id=69 labels={'Game'} properties={'name': 'Car Earth', 'release': '2018-09-14 06:09', 'age': '16'}>
+<Node id=71 labels={'Game'} properties={'name': 'Soldier Motor', 'release': '2016-01-01 03:34', 'age': '8'}>
+<Node id=81 labels={'Game'} properties={'name': 'Earth Motor', 'release': '2018-12-18 22:47', 'age': '2'}>
+-------------2
+Get all the Developers with locations in Faro
+<Node id=6 labels={'Developer'} properties={'name': 'Sony', 'location': 'Faro'}>
+<Node id=30 labels={'Developer'} properties={'name': 'Nintendo', 'location': 'Faro'}>
+-------------3
+Get all the Developers and their number of Games
+<Node id=2 labels={'Developer'} properties={'name': 'Pokemon', 'location': 'Martin'}> -> 7
+<Node id=4 labels={'Developer'} properties={'name': 'Valve', 'location': 'Lisboa'}> -> 7
+<Node id=6 labels={'Developer'} properties={'name': 'Sony', 'location': 'Faro'}> -> 7
+<Node id=9 labels={'Developer'} properties={'name': 'Intel', 'location': 'Coimbra'}> -> 6
+<Node id=16 labels={'Developer'} properties={'name': 'Naughty Dog', 'location': 'Martin'}> -> 6
+<Node id=30 labels={'Developer'} properties={'name': 'Nintendo', 'location': 'Faro'}> -> 7
+-------------4
+Top 3 users with the most games owned
+Ana56 -> 12
+Soraia3 -> 12
+Alice47 -> 11
+-------------5
+Number of users in the database
+340
+-------------6
+Games for adults (18+)
+<Node id=7 labels={'Game'} properties={'name': 'Ultra Motor', 'release': '2017-10-23 16:08', 'age': '18'}>
+<Node id=8 labels={'Game'} properties={'name': 'Last Plus', 'release': '2017-02-13 02:13', 'age': '18'}>
+<Node id=19 labels={'Game'} properties={'name': 'Last Sun', 'release': '2015-06-26 12:36', 'age': '18'}>
+<Node id=22 labels={'Game'} properties={'name': 'War Insane', 'release': '2018-11-01 00:13', 'age': '18'}>
+<Node id=26 labels={'Game'} properties={'name': 'I Earth', 'release': '2018-05-23 02:48', 'age': '18'}>
+<Node id=34 labels={'Game'} properties={'name': 'Soldier Ultra', 'release': '2015-12-15 08:55', 'age': '18'}>
+-------------7
+Games for age (12+)
+<Node id=7 labels={'Game'} properties={'name': 'Ultra Motor', 'release': '2017-10-23 16:08', 'age': '18'}>
+<Node id=8 labels={'Game'} properties={'name': 'Last Plus', 'release': '2017-02-13 02:13', 'age': '18'}>
+<Node id=11 labels={'Game'} properties={'name': 'Soldier Soldier', 'release': '2016-03-01 10:47', 'age': '16'}>
+<Node id=13 labels={'Game'} properties={'name': 'Night Digital', 'release': '2015-02-06 00:38', 'age': '12'}>
+<Node id=18 labels={'Game'} properties={'name': 'Pro Last', 'release': '2018-09-12 15:31', 'age': '12'}>
+<Node id=19 labels={'Game'} properties={'name': 'Last Sun', 'release': '2015-06-26 12:36', 'age': '18'}>
+<Node id=20 labels={'Game'} properties={'name': 'First Night', 'release': '2017-01-28 01:18', 'age': '12'}>
+<Node id=22 labels={'Game'} properties={'name': 'War Insane', 'release': '2018-11-01 00:13', 'age': '18'}>
+<Node id=26 labels={'Game'} properties={'name': 'I Earth', 'release': '2018-05-23 02:48', 'age': '18'}>
+<Node id=27 labels={'Game'} properties={'name': 'Digital Infamous', 'release': '2018-11-07 01:24', 'age': '12'}>
+<Node id=32 labels={'Game'} properties={'name': 'II Dawn', 'release': '2016-05-13 23:47', 'age': '12'}>
+<Node id=34 labels={'Game'} properties={'name': 'Soldier Ultra', 'release': '2015-12-15 08:55', 'age': '18'}>
+<Node id=40 labels={'Game'} properties={'name': 'Pro Fight', 'release': '2017-10-04 09:41', 'age': '16'}>
+<Node id=43 labels={'Game'} properties={'name': 'Ultra I', 'release': '2017-07-19 01:16', 'age': '12'}>
+<Node id=45 labels={'Game'} properties={'name': 'War Ultra', 'release': '2015-10-02 08:09', 'age': '12'}>
+<Node id=46 labels={'Game'} properties={'name': 'Infamous Digital', 'release': '2017-04-25 20:31', 'age': '12'}>
+<Node id=47 labels={'Game'} properties={'name': 'Ultimate Fight', 'release': '2017-01-02 12:17', 'age': '12'}>
+<Node id=49 labels={'Game'} properties={'name': 'Night War', 'release': '2015-03-20 19:12', 'age': '12'}>
+<Node id=50 labels={'Game'} properties={'name': 'Ultimate Dawn', 'release': '2015-12-07 13:29', 'age': '16'}>
+<Node id=55 labels={'Game'} properties={'name': 'Soldier Sun', 'release': '2015-09-02 05:42', 'age': '12'}>
+<Node id=59 labels={'Game'} properties={'name': 'Sun War', 'release': '2015-04-11 09:37', 'age': '12'}>
+<Node id=69 labels={'Game'} properties={'name': 'Car Earth', 'release': '2018-09-14 06:09', 'age': '16'}>
+-------------8
+Games of the 'Dawn' series
+<Node id=5 labels={'Game'} properties={'name': 'Dawn Final', 'release': '2018-08-23 14:24', 'age': '8'}>
+<Node id=42 labels={'Game'} properties={'name': 'Dawn First', 'release': '2015-06-11 10:35', 'age': '8'}>
+<Node id=51 labels={'Game'} properties={'name': 'Dawn Sun', 'release': '2017-03-05 14:45', 'age': '2'}>
+-------------9
+Number of users withing the 'UA' domain
+123
+-------------10
+Most popular Game
+Ultra Motor

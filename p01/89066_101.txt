@@ -1,0 +1,55 @@
+ping
+ping ola
+ping
+ping wnrfiewubfu
+SET newkey "my first time"
+GET newkey
+INCR newkey
+SET num01 23
+INCR num01
+SET num02 23.4
+INCR num02
+INCRBY num02 0.4
+GET num02
+SET num03 23,4
+GET num03
+DEL all
+get num03
+lpush list01 23 324 3454
+get lis01
+get list01
+lrange list01
+lrange list01 0 
+lrange list01 0 3
+lrange list01 0 10
+lrange list01 0 -1
+--scan
+keys *
+del keys
+del *
+keys *
+lpush list01 num02
+lrange list01 0 -1
+lpush list01 num02
+lrange list01 0 -1
+lrange num02 0 -1
+lpush num02 0 1
+smembers list01
+sdd set01 1 2 3 4 5 6 
+sadd set01 1 2 3 4 5 6
+smembers set01
+sadd set02 9 2 4 8 4 5 2
+SMEMBERS set02
+SISMEMBER set02 324
+SISMEMBER set02 9
+HMset paper lenght 20 weight 23
+HMGET paper
+hmget paper *
+hmget paper length
+hmget paper 3
+hgetall paper
+hmget paper
+hmget paper length
+hget paper length
+hget paper 
+hget paper length

@@ -1,0 +1,12 @@
+        {"usernamer": "João20", "videoid": 6, "event": {"2018-11-23 20:39:00.000Z": {"action": "play", "interval": "11"}}}
+      {"usernamer": "João20", "videoid": 10, "event": {"2018-05-29 01:18:00.000Z": {"action": "play", "interval": "110"}}}
+      {"usernamer": "João20", "videoid": 19, "event": {"2017-12-10 07:13:00.000Z": {"action": "play", "interval": "110"}}}
+ {"usernamer": "Francisca75", "videoid": 10, "event": {"2018-11-09 05:58:00.000Z": {"action": "play", "interval": "100"}}}
+ {"usernamer": "Margarida95", "videoid": 3, "event": {"2016-03-05 03:53:00.000Z": {"action": "pause", "interval": "120"}}}
+ {"usernamer": "Margarida95", "videoid": 18, "event": {"2018-08-29 22:20:00.000Z": {"action": "stop", "interval": "100"}}}
+      {"usernamer": "José70", "videoid": 2, "event": {"2018-12-23 21:45:00.000Z": {"action": "pause", "interval": "110"}}}
+      {"usernamer": "José70", "videoid": 5, "event": {"2017-05-05 19:37:00.000Z": {"action": "pause", "interval": "110"}}}
+      {"usernamer": "José70", "videoid": 18, "event": {"2018-05-04 20:49:00.000Z": {"action": "play", "interval": "110"}}}
+     {"usernamer": "Soraia51", "videoid": 1, "event": {"2018-10-13 00:40:00.000Z": {"action": "play", "interval": "120"}}}
+    {"usernamer": "Mafalda26", "videoid": 9, "event": {"2018-07-27 05:39:00.000Z": {"action": "play", "interval": "100"}}}
+

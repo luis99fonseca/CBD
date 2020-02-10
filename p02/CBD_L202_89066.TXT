@@ -1,0 +1,111 @@
+#1
+db.rest.find()
+
+#2
+//indicamos 1 se queremos que apareça, 0 caso contrario
+db.rest.find({}, {"restaurant_id":1,"nome":1, "localidade":1, "gastronomia":1 })
+
+#3
+db.rest.find({}, {_id:0, "restaurant_id":1,"nome":1, "localidade":1, "address.zipcode":1 })
+
+#4
+//db.rest.aggregate(  [ {$match: {"localidade":"Bronx"} }, {$group: { _id:"localidade", total: {$sum :1 } }}  ] )
+db.rest.find("localidade":"Bronx").count()
+
+#5
+db.rest.find({"localidade":"Bronx"}).limit(5)
+
+#6
+db.rest.find({"grades.score": {$gt: 85} }, {"nome":1, "grades.score":1})
+
+#7
+db.rest.find({"grades": {$elemMatch: {"score": { $gte:80,$lte: 100} } }  }, {"nome":1 } )
+
+#8
+db.rest.find( {"address.coord.0" : {$lt:-95.7}},{ "nome":1, "address.coord":1}  )
+
+#9
+db.rest.find( {$and: [ {"gastronomia": {$ne:"American"} }, {"grades.score": {$gt: 70}},{"address.coord.0" : {$lt:-65}} ] }, {"gastronomia":1, "grades.score":1, "address.coord":1} )
+
+#10
+db.rest.find( {"nome":  /^Wil/ }, {"restaurant_id":1, "nome":1, "localidade":1, "gastronomia":1})
+
+#11
+db.rest.find( {"localidade": "Bronx", $or: [{"gastronomia": "American"}, {"gastronomia":"Chinese"} ] }, {"nome":1, "localidade":1, "gastronomia":1, "_id":0}    )
+
+#12 
+db.rest.find({ $or: [{"localidade": "Staten Island"}, {"localidade":"Queens"}, {"localidade": "Bronx"}, {"localidade": "Brooklyn"} ] }, {"nome":1, "localidade":1, "gastronomia":1, "restaurant_id" : 1}  )
+
+#13
+db.rest.find( {"grades.score": {$not : { $gt: 3  }  }   }, {"nome":1, "localidade":1, "score":1, "gastronomia":1, "_id":0 }  )
+
+#14
+db.rest.find( { "grades": { "$elemMatch": { "grade":"A", "score":10, "date": ISODate("2014-08-11T00:00:00Z")  } }  }, { "nome":1, "grades":1, "_id":0 } )
+
+#15
+db.rest.find( {"grades.1.grade": "A", "grades.1.date": ISODate("2014-08-11T00:00:00Z") }, {"_id":0, "restaurant_id":1, "nome":1, "grades.score":1 }  )
+
+#16
+db.rest.find({ "address.coord.1" : {$gt:42, $lte:52 }   }, {"restaurant_id":1, "nome":1, "address":1, "_id":0}  )
+
+#17
+db.rest.find({}, {"nome":1, "_id":0 } ).sort({"nome":1})
+
+#18
+db.rest.find({}, {"nome":1, "_id":0, "gastronomia":1, "localidade":1 } ).sort({"gastronomia":1, "localidade":-1 })
+
+#19
+db.rest.find( { "localidade": "Brooklyn", "grades.grade": "A", "gastronomia": {$ne: "American"}  }, {"nome":1, "localidade":1, "grades.grade":1, "gastronomia":1} ).sort({"gastronomia":-1})
+
+#20
+//NOTA: o $ ao pe de localidade é importante, se nao nao faz por localidades distintas
+db.rest.aggregate( [ {$group: { "_id":"$localidade", total: {$sum :1 } }}  ] )
+
+#21
+db.rest.aggregate( [ {$unwind: "$grades"},  {$group: {"_id":"$nome", "media": {$avg : "$grades.score"} } } , {$match: {"media": {$gt:30} } } ] )
+
+#22
+db.rest.aggregate( [{$match: { "gastronomia":"American", "address.coord.0": {$lt: -65} } }, {$unwind: "$grades"},  {$group: {"_id":"$nome", "suma": {$sum : "$grades.score"} } } , {$match: {"suma": {$gt:70 } }  }  ] )
+
+#23
+db.rest.aggregate( { $group: {"_id":"$gastronomia", "total": {$sum : 1}  }  }, {$sort:{"total":-1 } } )
+
+#24
+db.rest.aggregate([{
+   $match: {
+      "address.rua": "Flatbush Avenue"
+   }
+},  {
+   $group: {
+      _id: null,
+      number: {
+         $sum: 1
+      }
+   }
+}])
+
+--> na versao original tinha isto e tinha bem...
+db.rest.aggregate( {$match: {"address.rua": "Flatbush Avenue" }}, {$group: {"_id":"$gastronomia"} }, {$count: "gastornomias"} )
+
+#25
+db.rest.aggregate(  {$group: {"_id":"$address.rua", "total":{$sum: 1}} }, {$sort: {"total":-1} } )
+
+#26 Restaurantes com exatamente um A
+//NOTA: sem o unwind, vai buscar todos os restaurantes (com pelo menos um A) e simplesmente os conta;
+db.rest.aggregate( {$unwind: "$grades" } , {$match: {"grades.grade" : "A"  } }, {$group: {"_id": "$nome", "totalA": {$sum: 1 } } }, {$match:{"totalA": 1 } }   )
+
+#27 Media dos 2os scores
+db.rest.aggregate( { $project: { "nome":1,  "grades": { $arrayElemAt: ["$grades", 1] } } }, {$group: {"_id": null, "media": {$avg: "$grades.score"}  }} ) 
+
+#28 Maximo de reviews por cidade
+db.rest.aggregate(  {$project: {"nome":1, "size":{$size: "$grades" }, "localidade":1 } }, {$group: {"_id": "$localidade", "reviews": {$max: "$size"} }}, {$sort:{"nome":1}}     )
+
+#29 Media de reviews por cidade
+db.rest.aggregate(  {$project: {"nome":1, "size":{$size: "$grades" }, "localidade":1 } }, {$group: {"_id": "$localidade", "reviews": {$avg: "$size"} }}, {$sort:{"nome":1}}     )
+
+#30 Restaurantes com alguma pontuação negativa
+db.rest.find({
+   "grades.score": {
+      $lt: 0
+   }
+}, {"nome":1, "grades":1})
